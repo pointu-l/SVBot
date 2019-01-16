@@ -8,7 +8,7 @@ a script for automaticly up svn repo, all 30 minutes, all days for this first ve
 if you need to "fetch" a svn repo all 30 minutes (considered as an "user action" for most organizations like schools for eg ...) then it's made for you ... 😜
 
 ## Roadmap
-🔧 upping a repo all 30 minutes. 
+🔧 upping a repo all 30 minutes.  
 ⏳ upping only when it's time to (for eg only 3 days in the week).  
 ⏳ adding a logger.  
 ⏳ move some things to a config file.  
