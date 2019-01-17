@@ -40,13 +40,15 @@ class SVBot
      */
     refreshTimeout(now: Date)
     {
-        const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSSS").add(30, 'm');
+        const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
+            .add(30, 'm')
+        ;
         const next: Date = mNext.toDate();
         this.next = { };
         this.next.h = next.getHours();
         this.next.h = next.getMinutes();
 
-        const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss.SSSS").diff(next, "ms", true);
+        const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
         clearTimeout(this.timer);
         console.info("Nouveau déclenchement dans 30 minutes");
         this.timer = setTimeout(() => {
@@ -103,11 +105,11 @@ class SVBot
         if (currentHour < this.morningHour.h )
         {
             // Tôt le matin ou tard le soir
-            const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSSS")
+            const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
                 .hours(this.morningHour.h)
                 .minutes(this.morningHour.m);
             const next: Date = mNext.toDate();
-            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss.SSSS").diff(next, "ms", true);
+            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
             console.log(ms);
             clearTimeout(this.timer);
             console.log(` Dans : ${Math.round(ms) * -1 / 1000 / 60 / 60} heures`);
@@ -121,11 +123,11 @@ class SVBot
         if (currentHour >= this.lunchHour.h && currentHour < this.afternoonHour.h)
         {
             // Pause dej
-            const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSSS")
+            const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
                 .hours(this.afternoonHour.h)
                 .minutes(this.afternoonHour.m);
             const next: Date = mNext.toDate();
-            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss.SSSS").diff(next, "ms", true);
+            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
             console.log(ms);
             clearTimeout(this.timer);
             console.info("Pause dej.");
