@@ -12,7 +12,7 @@ class SVBot
     private endOfDayHour: HourObject;
 
     /**
-     * *Hour var format eg : 12:00
+     * *Hour const format eg : 12:00
      * @param  initObj
      */
     constructor(initObj: InitObject)
@@ -55,8 +55,8 @@ class SVBot
         const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
         clearTimeout(this.timer);
         console.info("Période de log détectée")
-        var tempTime = moment.duration(ms, 'milliseconds');
-        var y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
+        const tempTime = moment.duration(ms, 'milliseconds');
+        const y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
 
         console.log(` Dans : ${y}`);
         const future: Date = moment(now).clone().add(ms, "ms").toDate();
@@ -131,8 +131,8 @@ class SVBot
             clearTimeout(this.timer);
 
             console.info("Hors heures bureau");
-            var tempTime = moment.duration(ms, 'milliseconds');
-            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+            const tempTime = moment.duration(ms, 'milliseconds');
+            const y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
@@ -162,8 +162,8 @@ class SVBot
             clearTimeout(this.timer);
 
             console.info("Hors heures bureau");
-            var tempTime = moment.duration(ms, 'milliseconds');
-            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+            const tempTime = moment.duration(ms, 'milliseconds');
+            const y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
@@ -185,8 +185,8 @@ class SVBot
             const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
             clearTimeout(this.timer);
             console.info("Pause dej");
-            var tempTime = moment.duration(ms, 'milliseconds');
-            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+            const tempTime = moment.duration(ms, 'milliseconds');
+            const y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
