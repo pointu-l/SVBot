@@ -1,5 +1,6 @@
 import { exec } from "child_process";
 import moment from "moment";
+import {HourObject, InitObject} from "hours-objects";
 
 class SVBot
 {
