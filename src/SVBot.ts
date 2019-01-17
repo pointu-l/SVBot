@@ -50,7 +50,13 @@ class SVBot
 
         const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
         clearTimeout(this.timer);
-        console.info("Nouveau déclenchement dans 30 minutes");
+        console.info("Période de log détectée")
+        var tempTime = moment.duration(ms, 'milliseconds');
+        var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+
+        console.log(` Dans : ${y}`);
+        const future: Date = mNext.add(ms, "ms").toDate();
+        console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
         this.timer = setTimeout(() => {
             console.log("alerte")
             this.init();
@@ -112,8 +118,15 @@ class SVBot
             const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
             console.log(ms);
             clearTimeout(this.timer);
-            console.log(` Dans : ${Math.round(ms) * -1 / 1000 / 60 / 60} heures`);
+
             console.info("Hors heures bureau");
+            var tempTime = moment.duration(ms, 'milliseconds');
+            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+
+            console.log(` Dans : ${y}`);
+            const future: Date = mNext.add(ms, "ms").toDate();
+            console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+
             this.timer = setTimeout(() => {
                 this.init();
             }, ms * -1);
@@ -130,7 +143,13 @@ class SVBot
             const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
             console.log(ms);
             clearTimeout(this.timer);
-            console.info("Pause dej.");
+            console.info("Pause dej");
+            var tempTime = moment.duration(ms, 'milliseconds');
+            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+
+            console.log(` Dans : ${y}`);
+            const future: Date = mNext.add(ms, "ms").toDate();
+            console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
             this.timer = setTimeout(() => {
                 this.init();
             }, ms * -1);
