@@ -35,6 +35,10 @@ class SVBot
         this.endOfDayHour = { h: +tmp[0], m: +tmp[1] };
     }
 
+    protected zero(n: number)
+    {
+        return (n < 10 ? '0' : '') + n;
+    }
     /**
      * @private
      */
@@ -52,11 +56,11 @@ class SVBot
         clearTimeout(this.timer);
         console.info("Période de log détectée")
         var tempTime = moment.duration(ms, 'milliseconds');
-        var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+        var y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
 
         console.log(` Dans : ${y}`);
         const future: Date = moment(now).clone().add(ms, "ms").toDate();
-        console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+        console.log(` Soit à : ${ this.zero(future.getHours()) }:${ this.zero(future.getMinutes()) }:${ this.zero(future.getSeconds()) } `);
         this.timer = setTimeout(() => {
             console.log("alerte")
             this.init();
@@ -128,7 +132,33 @@ class SVBot
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
-            console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+            console.log(` Soit à : ${ this.zero(future.getHours()) }:${ this.zero(future.getMinutes()) }:${ this.zero(future.getSeconds()) } `);
+
+            this.timer = setTimeout(() => {
+                this.init();
+            }, ms);
+            return;
+        }
+
+        if (currentHour >= this.endOfDayHour.h && currentMins > 0)
+        {
+            // Tôt le matin ou tard le soir
+            const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
+                .hours(this.morningHour.h)
+                .minutes(this.morningHour.m);
+            const next: Date = mNext.toDate();
+            now.setMinutes(0);
+            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
+            console.log(ms);
+            clearTimeout(this.timer);
+
+            console.info("Hors heures bureau");
+            var tempTime = moment.duration(ms, 'milliseconds');
+            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+
+            console.log(` Dans : ${y}`);
+            const future: Date = nowMoment.clone().add(ms, "ms").toDate();
+            console.log(` Soit à : ${ this.zero(future.getHours()) }:${ this.zero(future.getMinutes()) }:${ this.zero(future.getSeconds()) } `);
 
             this.timer = setTimeout(() => {
                 this.init();
@@ -153,7 +183,7 @@ class SVBot
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
-            console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+            console.log(` Soit à : ${ this.zero(future.getHours()) }:${ this.zero(future.getMinutes()) }:${ this.zero(future.getSeconds()) } `);
             this.timer = setTimeout(() => {
                 this.init();
             }, ms);
@@ -166,10 +196,10 @@ class SVBot
      */
     init()
     {
-        let dir;
-        dir = exec("svn up", (err: any, stdout: string, stderr: any) => {
+        exec("svn up", (err: any, stdout: string, stderr: any) => {
             let date: Date = new Date();
-            console.info("[UP] " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+            console.info("---------------------")
+            console.info("[SVN UP] " + this.zero(date.getHours()) + ":" + this.zero(date.getMinutes()) + ":" + this.zero(date.getSeconds()));
             console.info(stdout);
             if (err) {
                 console.info("[ERROR]");
