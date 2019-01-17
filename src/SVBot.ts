@@ -122,8 +122,11 @@ class SVBot
                 .minutes(this.morningHour.m);
             const next: Date = mNext.toDate();
             now.setMinutes(0);
-            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
-            console.log(ms);
+            let ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
+            if (ms < 0)
+            {
+                ms *= -1;
+            }
             clearTimeout(this.timer);
 
             console.info("Hors heures bureau");
@@ -148,8 +151,11 @@ class SVBot
                 .minutes(this.morningHour.m);
             const next: Date = mNext.toDate();
             now.setMinutes(0);
-            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
-            console.log(ms);
+            let ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
+            if (ms < 0)
+            {
+                ms *= -1;
+            }
             clearTimeout(this.timer);
 
             console.info("Hors heures bureau");
@@ -175,7 +181,6 @@ class SVBot
             const next: Date = mNext.toDate();
             now.setMinutes(0);
             const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
-            console.log(ms);
             clearTimeout(this.timer);
             console.info("Pause dej");
             var tempTime = moment.duration(ms, 'milliseconds');
