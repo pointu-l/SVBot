@@ -174,7 +174,7 @@ class SVBot
     {
         exec("svn up", (err: any, stdout: string, stderr: any) => {
             let date: Date = new Date();
-            console.info("---------------------")
+            console.info("------------------")
             console.info("[SVN UP] " + this.zero(date.getHours()) + ":" + this.zero(date.getMinutes()) + ":" + this.zero(date.getSeconds()));
             console.info(stdout);
             if (err) {
