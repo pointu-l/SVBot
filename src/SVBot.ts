@@ -147,6 +147,7 @@ class SVBot
         {
             // Tôt le matin ou tard le soir
             const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
+                .add(1, 'd')
                 .hours(this.morningHour.h)
                 .minutes(this.morningHour.m);
             const next: Date = mNext.toDate();
