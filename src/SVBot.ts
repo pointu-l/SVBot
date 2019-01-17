@@ -83,7 +83,7 @@ class SVBot {
 
             console.info("Heures inactives (matin)");
             const tempTime = moment.duration(ms, 'milliseconds');
-            const y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+            const y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
 
             console.log(` Il commence dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
@@ -112,7 +112,7 @@ class SVBot {
 
             console.info("SVBot rentre chez lui.");
             const tempTime = moment.duration(ms, 'milliseconds');
-            const y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+            const y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
 
             console.log(` Retour dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
@@ -134,7 +134,7 @@ class SVBot {
             clearTimeout(this.timer);
             console.info("SVBot part en pause dejeuner.");
             const tempTime = moment.duration(ms, 'milliseconds');
-            const y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
+            const y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
 
             console.log(` Il en a pour : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
