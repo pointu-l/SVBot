@@ -1,10 +1,5 @@
-"use strict";
-
 import { exec } from "child_process";
 import moment from "moment";
-
-type InitObject = { morningHour: string, lunchHour: string, afternoonHour: string, endOfDayHour: string };
-type HourObject = { h: number, m: number };
 
 class SVBot
 {
