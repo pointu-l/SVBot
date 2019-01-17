@@ -56,7 +56,14 @@ class SVBot
 
         console.log(` Dans : ${y}`);
         const future: Date = moment(now).clone().add(ms, "ms").toDate();
-        console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+        let hours: string|number = future.getHours();
+        let minuts: string|number = future.getMinutes();
+        let seconds: string|number = future.getSeconds();
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minuts = minuts < 10 ? "0" + minuts : minuts;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        console.log(` Soit à : ${ hours }:${ minuts }:${ seconds } `);
         this.timer = setTimeout(() => {
             console.log("alerte")
             this.init();
@@ -128,7 +135,14 @@ class SVBot
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
-            console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+            let hours: string|number = future.getHours();
+            let minuts: string|number = future.getMinutes();
+            let seconds: string|number = future.getSeconds();
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minuts = minuts < 10 ? "0" + minuts : minuts;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            console.log(` Soit à : ${ hours }:${ minuts }:${ seconds } `);
 
             this.timer = setTimeout(() => {
                 this.init();
@@ -153,7 +167,14 @@ class SVBot
 
             console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
-            console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
+            let hours: string|number = future.getHours();
+            let minuts: string|number = future.getMinutes();
+            let seconds: string|number = future.getSeconds();
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minuts = minuts < 10 ? "0" + minuts : minuts;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            console.log(` Soit à : ${ hours }:${ minuts }:${ seconds } `);
             this.timer = setTimeout(() => {
                 this.init();
             }, ms);
