@@ -143,7 +143,7 @@ class SVBot
             return;
         }
 
-        if (currentHour >= this.endOfDayHour.h && currentMins > 0)
+        if (currentHour > this.endOfDayHour.h || ( currentHour == this.endOfDayHour.h && currentMins > 0 ))
         {
             // Tôt le matin ou tard le soir
             const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
