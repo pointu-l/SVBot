@@ -81,7 +81,7 @@ class SVBot {
             }
             clearTimeout(this.timer);
 
-            console.info("Heures inactives (matin)");
+            console.info("SVBot part de chez lui.");
             const tempTime = moment.duration(ms, 'milliseconds');
             const y = this.zero(tempTime.hours()) + ":" + this.zero(tempTime.minutes()) + ":" + this.zero(tempTime.seconds());
 
