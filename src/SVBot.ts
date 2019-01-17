@@ -55,7 +55,7 @@ class SVBot
         var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
         console.log(` Dans : ${y}`);
-        const future: Date = mNext.clone().add(ms, "ms").toDate();
+        const future: Date = moment(now).clone().add(ms, "ms").toDate();
         console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
         this.timer = setTimeout(() => {
             console.log("alerte")
@@ -70,6 +70,8 @@ class SVBot
     setTimeout()
     {
         const now: Date = new Date();
+        const nowMoment: moment.Moment = moment(now);
+
         const currentHour: number = now.getHours();
         const currentMins: number = now.getMinutes();
 
@@ -124,7 +126,7 @@ class SVBot
             var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
-            const future: Date = mNext.clone().add(ms, "ms").toDate();
+            const future: Date = nowMoment.clone().add(ms, "ms").toDate();
             console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
 
             this.timer = setTimeout(() => {
@@ -148,7 +150,7 @@ class SVBot
             var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
-            const future: Date = mNext.clone().add(ms, "ms").toDate();
+            const future: Date = nowMoment.clone().add(ms, "ms").toDate();
             console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
             this.timer = setTimeout(() => {
                 this.init();
