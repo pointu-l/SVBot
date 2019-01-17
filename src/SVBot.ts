@@ -55,7 +55,7 @@ class SVBot
         var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
         console.log(` Dans : ${y}`);
-        const future: Date = mNext.add(ms, "ms").toDate();
+        const future: Date = mNext.clone().add(ms, "ms").toDate();
         console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
         this.timer = setTimeout(() => {
             console.log("alerte")
@@ -124,7 +124,7 @@ class SVBot
             var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
-            const future: Date = mNext.add(ms, "ms").toDate();
+            const future: Date = mNext.clone().add(ms, "ms").toDate();
             console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
 
             this.timer = setTimeout(() => {
@@ -148,7 +148,7 @@ class SVBot
             var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
             console.log(` Dans : ${y}`);
-            const future: Date = mNext.add(ms, "ms").toDate();
+            const future: Date = mNext.clone().add(ms, "ms").toDate();
             console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
             this.timer = setTimeout(() => {
                 this.init();
