@@ -79,40 +79,6 @@ class SVBot
         const currentHour: number = now.getHours();
         const currentMins: number = now.getMinutes();
 
-        if (this.next)
-        {
-            if (this.next.h === currentHour && this.next.m === currentMins)
-            {
-                return this.refreshTimeout(now);
-            }
-        }
-        // heures de log
-
-        if ((currentHour > this.morningHour.h && currentHour < this.lunchHour.h)
-            || (currentHour > this.afternoonHour.h && currentHour < this.endOfDayHour.h))
-        {
-            return this.refreshTimeout(now);
-        }
-
-        if (currentHour == this.morningHour.h)
-        {
-            return this.refreshTimeout(now);
-        }
-
-        if (currentHour == this.lunchHour.h && currentMins === 0)
-        {
-            return this.refreshTimeout(now);
-        }
-
-        if (currentHour == this.afternoonHour.h)
-        {
-            return this.refreshTimeout(now);
-        }
-
-        if (currentHour == this.endOfDayHour.h && currentMins === 0)
-        {
-            return this.refreshTimeout(now);
-        }
         // On calcule la diff heures & mins
         if (currentHour < this.morningHour.h )
         {
@@ -196,6 +162,9 @@ class SVBot
             }, ms);
             return;
         }
+
+        // Heures de log
+        return this.refreshTimeout(now);
     }
 
     /**
