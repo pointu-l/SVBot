@@ -161,7 +161,7 @@ class SVBot {
                 return 0;
             }
 
-            console.info("Recherche des heures de logs ...");
+            console.info("Recherche des heures actives ...");
             this.setTimeout();
         });
     }
