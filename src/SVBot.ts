@@ -117,7 +117,7 @@ class SVBot
                 .hours(this.morningHour.h)
                 .minutes(this.morningHour.m);
             const next: Date = mNext.toDate();
-            now.setMilliseconds(0);
+            now.setMinutes(0);
             const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
             console.log(ms);
             clearTimeout(this.timer);
@@ -143,7 +143,7 @@ class SVBot
                 .hours(this.afternoonHour.h)
                 .minutes(this.afternoonHour.m);
             const next: Date = mNext.toDate();
-            now.setMilliseconds(0);
+            now.setMinutes(0);
             const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
             console.log(ms);
             clearTimeout(this.timer);
