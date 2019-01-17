@@ -1,5 +1,5 @@
 import { exec } from "child_process";
-import moment from "moment";
+import moment, {min} from "moment";
 import {HourObject, InitObject} from "hours-objects";
 
 class SVBot
@@ -52,13 +52,23 @@ class SVBot
         clearTimeout(this.timer);
         console.info("Période de log détectée")
         var tempTime = moment.duration(ms, 'milliseconds');
-        var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
 
-        console.log(` Dans : ${y}`);
         const future: Date = moment(now).clone().add(ms, "ms").toDate();
         let hours: string|number = future.getHours();
         let minuts: string|number = future.getMinutes();
         let seconds: string|number = future.getSeconds();
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minuts = minuts < 10 ? "0" + minuts : minuts;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        var y = hours + ":" + minuts + ":" + seconds;
+
+        console.log(` Dans : ${y}`);
+
+        hours = future.getHours();
+        minuts = future.getMinutes();
+        seconds = future.getSeconds();
 
         hours = hours < 10 ? "0" + hours : hours;
         minuts = minuts < 10 ? "0" + minuts : minuts;
@@ -131,13 +141,22 @@ class SVBot
 
             console.info("Hors heures bureau");
             var tempTime = moment.duration(ms, 'milliseconds');
-            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
-
-            console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
             let hours: string|number = future.getHours();
             let minuts: string|number = future.getMinutes();
             let seconds: string|number = future.getSeconds();
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minuts = minuts < 10 ? "0" + minuts : minuts;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            var y = hours + ":" + minuts + ":" + seconds;
+
+            console.log(` Dans : ${y}`);
+
+            hours = future.getHours();
+            minuts = future.getMinutes();
+            seconds = future.getSeconds();
 
             hours = hours < 10 ? "0" + hours : hours;
             minuts = minuts < 10 ? "0" + minuts : minuts;
@@ -163,9 +182,6 @@ class SVBot
             clearTimeout(this.timer);
             console.info("Pause dej");
             var tempTime = moment.duration(ms, 'milliseconds');
-            var y = tempTime.hours() + ":" + tempTime.minutes() + ":" + tempTime.seconds();
-
-            console.log(` Dans : ${y}`);
             const future: Date = nowMoment.clone().add(ms, "ms").toDate();
             let hours: string|number = future.getHours();
             let minuts: string|number = future.getMinutes();
@@ -174,7 +190,20 @@ class SVBot
             hours = hours < 10 ? "0" + hours : hours;
             minuts = minuts < 10 ? "0" + minuts : minuts;
             seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            var y = hours + ":" + minuts + ":" + seconds;
+
+            console.log(` Dans : ${y}`);
+
+            hours = future.getHours();
+            minuts = future.getMinutes();
+            seconds = future.getSeconds();
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minuts = minuts < 10 ? "0" + minuts : minuts;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
             console.log(` Soit à : ${ hours }:${ minuts }:${ seconds } `);
+            
             this.timer = setTimeout(() => {
                 this.init();
             }, ms);
