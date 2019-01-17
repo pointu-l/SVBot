@@ -48,7 +48,7 @@ class SVBot
         this.next.h = next.getHours();
         this.next.h = next.getMinutes();
 
-        const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
+        const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
         clearTimeout(this.timer);
         console.info("Période de log détectée")
         var tempTime = moment.duration(ms, 'milliseconds');
@@ -60,7 +60,7 @@ class SVBot
         this.timer = setTimeout(() => {
             console.log("alerte")
             this.init();
-        }, ms * -1);
+        }, ms);
         return;
     }
 
@@ -115,7 +115,7 @@ class SVBot
                 .hours(this.morningHour.h)
                 .minutes(this.morningHour.m);
             const next: Date = mNext.toDate();
-            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
+            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
             console.log(ms);
             clearTimeout(this.timer);
 
@@ -129,7 +129,7 @@ class SVBot
 
             this.timer = setTimeout(() => {
                 this.init();
-            }, ms * -1);
+            }, ms);
             return;
         }
 
@@ -140,7 +140,7 @@ class SVBot
                 .hours(this.afternoonHour.h)
                 .minutes(this.afternoonHour.m);
             const next: Date = mNext.toDate();
-            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true);
+            const ms: number = moment(now,"DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
             console.log(ms);
             clearTimeout(this.timer);
             console.info("Pause dej");
@@ -152,7 +152,7 @@ class SVBot
             console.log(` Soit à : ${ future.getHours() }:${ future.getMinutes() }:${ future.getSeconds() } `);
             this.timer = setTimeout(() => {
                 this.init();
-            }, ms * -1);
+            }, ms);
             return;
         }
     }
