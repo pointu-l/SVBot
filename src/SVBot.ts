@@ -61,6 +61,9 @@ class SVBot {
         const currentHour: number = now.getHours();
         const currentMins: number = now.getMinutes();
 
+        const nextDuration: moment.Duration = moment.duration(30, "minutes");
+        const nextDate: Date = moment(new Date(), "DD/MM/YYYY HH:mm:ss").add(nextDuration, "minutes").toDate();
+
         // On calcule la diff heures & mins
         if (currentHour < this.morningHour.h) {
             /*
@@ -124,11 +127,12 @@ class SVBot {
             return;
         }
 
-        if (currentHour >= this.lunchHour.h && currentHour < this.afternoonHour.h) {
+        if ((currentHour >= this.lunchHour.h && currentHour < this.afternoonHour.h) || (nextDate.getHours() >= this.lunchHour.h && nextDate.getHours() < this.afternoonHour.h)) {
             // Pause dej
             const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
                 .hours(this.afternoonHour.h)
-                .minutes(this.afternoonHour.m);
+                .minutes(this.afternoonHour.m)
+                .seconds(0);
             const next: Date = mNext.toDate();
             const ms: number = moment(now, "DD/MM/YYYY HH:mm:ss").diff(next, "ms", true) * -1;
             clearTimeout(this.timer);
