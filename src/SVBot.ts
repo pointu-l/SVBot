@@ -29,7 +29,7 @@ class SVBot {
         this.endOfDayHour = {h: +tmp[0], m: +tmp[1]};
     }
 
-    private zero(n: number) { (n < 10 ? '0' : '') + n }
+    private zero(n: number) { return (n < 10 ? '0' : '') + n }
 
     private refreshTimeout(now: Date) {
         const mNext: moment.Moment = moment(new Date(), "DD/MM/YYYY HH:mm:ss")
